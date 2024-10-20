@@ -25,3 +25,27 @@ body {
     text-wrap: balance;
   }
 }
+
+header {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: .2rem 0;
+  background: #2f2d2d;
+  color: #fff;
+}
+
+header h1 {
+  text-align: center;
+  color: yellow;
+  font-weight: bold;
+  font-size: 3rem;
+  margin: 0;
+  padding: 0.2rem;
+}
+
+header a {
+  color: dodgerblue;
+  padding: 0 0.2rem;
+  margin: 0 0.2rem;
+}

@@ -2,6 +2,11 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
+
+// Map of links to display in the side navigation.
+// Depending on the size of the application, this would be stored in a database.
+
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -23,12 +28,43 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
+
+    const links = [
+        { name: 'Dashboard', href: '/dashboard' },
+        {
+            name: 'Invoices',
+            href: '/dashboard/invoices',
+        },
+        { name: 'Customers', href: '/dashboard/customers' },
+    ];
+
+
+    return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+      <header>
+        <div>
+          <h1><a href="/">App</a></h1>
+        </div>
+        <div>
+          <div style={{display: "flex", justifyContent: "normal", flexDirection: "row"}}>
+              {links.map((link) => {
+                  return (
+                      <a
+                          key={link.name}
+                          href={link.href}
+                          className="flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3"
+                      >
+                          <p className="hidden md:block">{link.name}</p>
+                      </a>
+                  );
+              })}
+          </div>
+        </div>
+      </header>
+      {children}
       </body>
     </html>
   );
